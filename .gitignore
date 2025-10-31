@@ -1,0 +1,69 @@
+# Python Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+venv*/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs & Editors
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Build & Distribution
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs & Databases
+*.log
+*.sqlite
+*.sqlite3
+
+# OS Generated
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Arduino
+*.ino.hex
+*.ino.with_bootloader.hex
+*.ino.eep
+*.ino.elf
+*.ino.bin
+
+# Optional: Ignore large files (videos, models, etc.)
+*.mp4
+*.avi
+*.mov
+*.jpg
+*.png
+*.h5
+*.pth
+*.onnx

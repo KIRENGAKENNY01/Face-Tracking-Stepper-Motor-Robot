@@ -1,26 +1,44 @@
-int switchPin= 2;
-int xpin= A0;
-int ypin= A1;
+#include <Stepper.h>
+
+// Stepper motor setup (28BYJ-48 + ULN2003)
+const int stepsPerRevolution = 2048;  // ≈360°
+const int in1Pin = 8;
+const int in2Pin = 9;
+const int in3Pin = 10;
+const int in4Pin = 11;
+
+// Create Stepper object
+Stepper myStepper(stepsPerRevolution, in1Pin, in3Pin, in2Pin, in4Pin);
+
+// Movement parameters
+const int stepAmount = 50;   
+const int motorSpeed = 10;   // RPM
 
 void setup() {
   Serial.begin(9600);
-  pinMode(switchPin,INPUT);
-
+  myStepper.setSpeed(motorSpeed);
+  Serial.println("Stepper Face Tracker Ready.");
 }
+
 void loop() {
-  int sw_state=digitalRead(switchPin);
-  int x_val=analogRead(xpin);
-  int y_val=analogRead(ypin);
-  Serial.print("Sw state:");
-  Serial.println(sw_state);
-  delay(10000);
-  Serial.print("X value:");
-  Serial.println(x_val);
-   delay(100000);
-  Serial.print("y val: ");
-  Serial.println(y_val);
-   delay(10000);
+  if (Serial.available() > 0) {
+    String command = Serial.readStringUntil('\n');
+    command.trim();
 
-  delay(100);
-
+    if (command == "LEFT") {
+      Serial.println("Moving LEFT...");
+      myStepper.step(-stepAmount);
+    }
+    else if (command == "RIGHT") {
+      Serial.println("Moving RIGHT...");
+      myStepper.step(stepAmount);
+    }
+    else if (command == "CENTERED") {
+      Serial.println("Centered. No movement.");
+    }
+    else {
+      Serial.print("Unknown command: ");
+      Serial.println(command);
+    }
+  }
 }
